@@ -5,5 +5,8 @@
 # password:string virtual by has_secure_password
 # password_confirmation:string virtual by has_secure_password
 class User < ApplicationRecord
-    has_secure_password
+  has_secure_password
+
+  # validation
+  validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "must be a valite email addres" }
 end
