@@ -5,5 +5,5 @@ Rails.application.routes.draw do
   root to: "main#index", as: "home"
   get "about", to: "about#index", as: "about"
   get "sign-up", to: "registration#new", as: "registration"
-  post "sign-up", to: "registration#new", as: "registrationpost"
+  post "sign-up", to: "registration#store", as: "registrationpost"
 end

@@ -8,5 +8,7 @@ class User < ApplicationRecord
   has_secure_password
 
   # validation
+  validates :name, presence: true 
+  validates :password, length: { minimum: 8 }
   validates :email, presence: true, format: { with: /\A[^@\s]+@[^@\s]+\z/, message: "must be a valite email addres" }
 end

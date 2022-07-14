@@ -3,30 +3,79 @@
     <div class="card">
       <div class="card-body">
         <h1>Sign Up</h1>
+
+        <% if @user.errors.any? %>
+        <br />
+        <div
+          class="alert alert-danger alert-dismissible fade show"
+          role="alert"
+        >
+          <% @user.errors.full_messages.each do |error_message| %>
+          <div><%= error_message %></div>
+          <% end %>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
+        <% end %>
+
         <hr />
         <%= form_with model: @user, url: registrationpost_path do |form| %>
         <div class="mb-3">
+          <% invalid = @user.errors[:email] %>
           <label class="form-label">Email address</label>
-          <%= form.email_field :email, class:"form-control",
-          placeholder:"email@email.com" %>
+          <%= form.email_field :email, class:"form-control #{'is-invalid'if
+          invalid}", placeholder:"email@email.com" %> <% if invalid %>
+          <div class="invalid-feedback d-block">
+            <% @user.errors.full_messages_for(:email).each do |error_message| %>
+            <%= error_message %>. <br />
+            <% end %>
+          </div>
+          <% end %>
         </div>
 
         <div class="mb-3">
+          <% invalidName = @user.errors[:name] %>
           <label class="form-label">Name</label>
-          <%= form.text_field :name, class:"form-control", placeholder:"stepen"
-          %>
+          <%= form.text_field :name, class:"form-control #{'is-invalid'if
+          invalidName}", placeholder:"stepen" %><% if invalidName %>
+          <div class="invalid-feedback d-block">
+            <% @user.errors.full_messages_for(:name).each do |error_message| %>
+            <%= error_message %>. <br />
+            <% end %>
+          </div>
+          <% end %>
         </div>
 
         <div class="mb-3">
+          <% invalidPassword = @user.errors[:password] %>
           <label class="form-label">Password</label>
-          <%= form.password_field :password,
-          class:"form-control",placeholder:"password" %>
+          <%= form.password_field :password, class:"form-control
+          #{'is-invalid'if invalidPassword}", placeholder:"password" %> <% if
+          invalidPassword %>
+          <div class="invalid-feedback d-block">
+            <% @user.errors.full_messages_for(:password).each do |error_message|
+            %> <%= error_message %>. <br />
+            <% end %>
+          </div>
+          <% end %>
         </div>
 
         <div class="mb-3">
-          <label class="form-label">Password</label>
-          <%= form.password_field :password_confirmation,
-          class:"form-control",placeholder:"password" %>
+          <% invalidPassConfirm = @user.errors[:password_confirmation] %>
+          <label class="form-label">Password Confirmation</label>
+          <%= form.password_field :password_confirmation, class:"form-control
+          #{'is-invalid'if invalidPassConfirm}", placeholder:"password" %> <% if
+          invalidPassConfirm %>
+          <div class="invalid-feedback d-block">
+            <% @user.errors.full_messages_for(:password_confirmation).each do
+            |error_message| %> <%= error_message %>. <br />
+            <% end %>
+          </div>
+          <% end %>
         </div>
         <div class="mb-3 text-end">
           <%= form.submit "Sign Up", class:"btn btn-primary" %>
