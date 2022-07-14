@@ -13,7 +13,11 @@
   </head>
 
   <body>
-    <% # Kalau dilaravel ini buat yield content %>
-    <%= yield %>
+    <% # Gabisa disimpen dilayout %>
+    <%= render partial: "shared/navbar" %>
+    <div class="container">
+      <% # Kalau dilaravel ini buat yield content %>
+      <%= yield %>
+    </div>
   </body>
 </html>
