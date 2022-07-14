@@ -25,10 +25,11 @@
         <hr />
         <%= form_with model: @user, url: registrationpost_path do |form| %>
         <div class="mb-3">
-          <% invalid = @user.errors[:email] %>
+          <% invalid = @user.errors.include?(:title) %>
           <label class="form-label">Email address</label>
-          <%= form.email_field :email, class:"form-control #{'is-invalid'if
-          invalid}", placeholder:"email@email.com" %> <% if invalid %>
+          <%= form.email_field :email, class:"form-control #{if invalid then
+          "is-invalid" else "" end }", placeholder:"email@email.com" %> <% if
+          invalid %>
           <div class="invalid-feedback d-block">
             <% @user.errors.full_messages_for(:email).each do |error_message| %>
             <%= error_message %>. <br />
@@ -38,7 +39,7 @@
         </div>
 
         <div class="mb-3">
-          <% invalidName = @user.errors[:name] %>
+          <% invalidName = @user.errors.include?(:name) %>
           <label class="form-label">Name</label>
           <%= form.text_field :name, class:"form-control #{'is-invalid'if
           invalidName}", placeholder:"stepen" %><% if invalidName %>
@@ -51,7 +52,7 @@
         </div>
 
         <div class="mb-3">
-          <% invalidPassword = @user.errors[:password] %>
+          <% invalidPassword = @user.errors.include?(:password) %>
           <label class="form-label">Password</label>
           <%= form.password_field :password, class:"form-control
           #{'is-invalid'if invalidPassword}", placeholder:"password" %> <% if
@@ -65,7 +66,7 @@
         </div>
 
         <div class="mb-3">
-          <% invalidPassConfirm = @user.errors[:password_confirmation] %>
+          <% invalidPassConfirm = @user.errors.include?(:password_confirmation) %>
           <label class="form-label">Password Confirmation</label>
           <%= form.password_field :password_confirmation, class:"form-control
           #{'is-invalid'if invalidPassConfirm}", placeholder:"password" %> <% if
