@@ -6,4 +6,8 @@ Rails.application.routes.draw do
   get "about", to: "about#index", as: "about"
   get "sign-up", to: "registration#new", as: "registration"
   post "sign-up", to: "registration#store", as: "registrationpost"
+
+  get "login", to: "sessions#login", as: "login"
+  post "login", to: "sessions#store", as: "loginstore"
+  delete "logout", to: "sessions#destroy", as: "logout"
 end

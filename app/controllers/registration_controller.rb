@@ -9,7 +9,9 @@ class RegistrationController < ApplicationController
     # params kaya $_POST di php
     @user = User.new(user_params)
     if @user.save
-      redirect_to home_path, message: "Successfully created account", type: "success"
+      # set session
+      session[:user_id] = @user.id
+      redirect_to home_path, flash: { :message => "Successfully created account", :type => "success" }
     else
       # ini render ke registration new
       render :new
