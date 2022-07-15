@@ -18,6 +18,7 @@ class RegistrationController < ApplicationController
     end
   end
 
+  private
   def user_params
     # form validation
     params.required(:user).permit(:email, :name, :password, :password_confirmation)
