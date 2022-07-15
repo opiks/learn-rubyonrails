@@ -1,11 +1,11 @@
 <div class="d-flex align-items-center justify-content-center">
   <h3>This is a homepage</h3>
 </div>
-<% if @user %>
+<% if Current.user %>
 <br />
 <div class="card">
   <div class="card-body">
-    Welcome <b><%= @user.name %></b> <br /><br />
+    Welcome <b><%= Current.user.name %></b> <br /><br />
     <%= button_to "Log out", logout_path,class: "btn btn-primary" , method: :delete %>
   </div>
 </div>
