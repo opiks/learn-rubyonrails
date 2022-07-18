@@ -16,7 +16,8 @@
           placeholder:"password" %>
         </div>
         <div class="mb-3 text-end">
-          <%= form.submit "Log In", class:"btn btn-primary" %>
+          <%= link_to "Forgot Password", forgopassword_path, class:"btn
+          btn-secondary" %> <%= form.submit "Log In", class:"btn btn-primary" %>
         </div>
         <% end %>
       </div>
